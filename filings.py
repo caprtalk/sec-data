@@ -4,6 +4,6 @@ import os
 
 def get_filing(ticker, quant):
     path = os.path.dirname(__file__)
-    dl = Downloader(f'{path}/temp-sec-fillings')
+    dl = Downloader(f'{path}/temp-sec-filings')
     dl.get('4', ticker, amount=quant)
 
