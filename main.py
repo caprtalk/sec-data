@@ -1,11 +1,10 @@
-import fillings
+import filings
 
 
 def main():
     company = input('enter company ticker ')
-    date = input('past 30 1y 5y 10y ')
-    r = fillings.get_filling(company, date)
-    print(r)
+    quantity = input('how many sec-fillings ')
+    filings.get_filing(company, quantity)
 
 
 if __name__ == '__main__':
