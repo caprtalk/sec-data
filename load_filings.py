@@ -25,7 +25,7 @@ def sort_files(ticker):  # moves temp xlm files into correct directory
     pos = 3
     count = 1
     try:
-        while pos < len(temp_path):
+        while pos < len(temp_path):  # moves each file from edgar database to correct folder
             src_folder = temp_path[pos]
             file = glob.glob(src_folder + file_type)
             file = file[0]
@@ -37,7 +37,7 @@ def sort_files(ticker):  # moves temp xlm files into correct directory
         clear_folder()
 
 
-def load_filings():
+def load_filings():  # loads requested filings from edgard database into the temp-sec-filings folder
     company = input('enter company ticker ')
     quantity = input('how many sec-filings ')
     get_filing(company, quantity)
