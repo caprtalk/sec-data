@@ -16,12 +16,12 @@ def clear_folder():  # removes unwanted directory after sort
     shutil.rmtree(clear_path)
 
 
-def sort_files(ticker):  # moves temp xlm files into correct directory
+def sort_files():  # moves temp xlm files into correct directory
     path = os.path.dirname(__file__)
     temp_path = glob.glob(f'{path}/temp-sec-filings/sec-edgar-filings/**', recursive=True)
     dst_folder = f'{path}/temp-sec-filings/'
     # Search files with .xml extension in source directory
-    file_type = r'\*.xml'
+    file_type = r'/*.xml'
     pos = 3
     count = 1
     try:
@@ -41,7 +41,7 @@ def load_filings():  # loads requested filings from edgard database into the tem
     company = input('enter company ticker ')
     quantity = input('how many sec-filings ')
     get_filing(company, quantity)
-    sort_files(company)
+    sort_files()
 
 
 load_filings()
