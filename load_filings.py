@@ -16,7 +16,7 @@ def clear_folder():  # removes unwanted directory after sort
     shutil.rmtree(clear_path)
 
 
-def sort_files():  # moves temp xlm files into correct directory
+def sort_files():  # moves temp xml files into correct directory
     path = os.path.dirname(__file__)
     temp_path = glob.glob(f'{path}/temp-sec-filings/sec-edgar-filings/**', recursive=True)
     dst_folder = f'{path}/temp-sec-filings/'
