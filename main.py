@@ -1,4 +1,12 @@
-import os
+import load_filings
+import clear_filings
 
-path = os.path.dirname(__file__)
-os.remove(f'{path}/temp-sec-filings/sec-edgar-filings')
+
+def main():
+    load_filings.load_filings()
+    clear_filings.clear_fillings()
+
+
+if __name__ == '__main__':
+    main()
+

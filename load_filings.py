@@ -24,17 +24,15 @@ def sort_files():  # moves temp xml files into correct directory
     file_type = r'/*.xml'
     pos = 3
     count = 1
-    try:
-        while pos < len(temp_path):  # moves each file from edgar database to correct folder
-            src_folder = temp_path[pos]
-            file = glob.glob(src_folder + file_type)
-            file = file[0]
-            file_name = f'filing-{count}.xml'
-            shutil.move(file, dst_folder + file_name)
-            pos += 3
-            count += 1
-    finally:
-        clear_folder()
+    while pos < len(temp_path):  # moves each file from edgar database to correct folder
+        src_folder = temp_path[pos]
+        file = glob.glob(src_folder + file_type)
+        file = file[0]
+        file_name = f'filing-{count}.xml'
+        shutil.move(file, dst_folder + file_name)
+        pos += 3
+        count += 1
+    clear_folder()
 
 
 def load_filings():  # loads requested filings from edgard database into the temp-sec-filings folder
