@@ -1,1 +1,0 @@
-temporary sec files pulled from edgar database stored in this directory

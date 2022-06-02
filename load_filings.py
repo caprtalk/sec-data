@@ -33,14 +33,22 @@ def sort_files():  # moves temp xml files into correct directory
         pos += 3
         count += 1
     clear_folder()
+    return count - 1
 
 
 def load_filings():  # loads requested filings from edgard database into the temp-sec-filings folder
     company = input('enter company ticker ')
     quantity = input('how many sec-filings ')
     get_filing(company, quantity)
-    sort_files()
+    num_filings = sort_files()
+    return num_filings
 
 
-load_filings()
-
+def clear_filings():  # clears all sec filings from temp folder after they have been read
+    path = os.path.dirname(__file__)
+    src_folder = f'{path}/temp-sec-filings'
+    # Search files with .xml extension in source directory
+    file_type = r'/*.xml'
+    files = glob.glob(src_folder + file_type)
+    for file in files:
+        os.remove(file)
