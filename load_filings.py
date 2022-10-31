@@ -6,20 +6,20 @@ import os
 
 def get_filing(ticker, quant):  # pulls form 4 filings from sec database given ticker and quantity
     path = os.path.dirname(__file__)
-    dl = Downloader(f'{path}/temp-sec-filings')
+    dl = Downloader(f'{path}/temp')
     dl.get('4', ticker, amount=quant)
 
 
 def clear_folder():  # removes unwanted directory after sort
     path = os.path.dirname(__file__)
-    clear_path = f'{path}/temp-sec-filings/sec-edgar-filings'
+    clear_path = f'{path}/temp/sec-edgar-filings'
     shutil.rmtree(clear_path)
 
 
 def sort_files():  # moves temp xml files into correct directory
     path = os.path.dirname(__file__)
-    temp_path = glob.glob(f'{path}/temp-sec-filings/sec-edgar-filings/**', recursive=True)
-    dst_folder = f'{path}/temp-sec-filings/'
+    temp_path = glob.glob(f'{path}/temp/sec-edgar-filings/**', recursive=True)
+    dst_folder = f'{path}/temp/'
     # Search files with .xml extension in source directory
     file_type = r'/*.xml'
     pos = 3
@@ -36,9 +36,9 @@ def sort_files():  # moves temp xml files into correct directory
     return count - 1
 
 
-def load_filings():  # loads requested filings from edgard database into the temp-sec-filings folder
-    company = input('enter company ticker ')
-    quantity = input('how many sec-filings ')
+def load_filings():  # loads requested filings from edgard database into the temp folder
+    company = input('ticker: ')
+    quantity = input('number of filings ')
     get_filing(company, quantity)
     num_filings = sort_files()
     return num_filings
@@ -46,9 +46,11 @@ def load_filings():  # loads requested filings from edgard database into the tem
 
 def clear_filings():  # clears all sec filings from temp folder after they have been read
     path = os.path.dirname(__file__)
-    src_folder = f'{path}/temp-sec-filings'
+    src_folder = f'{path}/temp'
     # Search files with .xml extension in source directory
     file_type = r'/*.xml'
     files = glob.glob(src_folder + file_type)
     for file in files:
         os.remove(file)
+
+load_filings()

@@ -9,12 +9,11 @@ def read_filing(file):  # function to read xml files
     contents = infile.read()
     soup = BeautifulSoup(contents, 'xml')
     # pull filing data from root
-    titles = soup.find_all('transactionShares')
-    thing = 0
-    for title in titles:
-        title = int(title)
-        thing += title
-    return thing
+    transaction = soup.find_all('transactionShares')
+    shares = 0
+    for title in transaction:
+        print(title)
+    return shares
 
 
 def main():
@@ -23,7 +22,7 @@ def main():
     count = 1
     data = []
     while count <= num_files:
-        filing_data = read_filing(f'{path}/temp-sec-filings/filing-{count}.xml')
+        filing_data = read_filing(f'{path}/temp/filing-{count}.xml')
         data.append(filing_data)
         count += 1
     load_filings.clear_filings()
